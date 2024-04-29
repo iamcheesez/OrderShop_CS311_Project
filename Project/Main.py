@@ -508,6 +508,8 @@ images_chocolate = PhotoImage(file = 'images/chocolate.png').subsample(4, 4)
 images_water = PhotoImage(file = 'images/water.png').subsample(4, 4)
 images_mamapork = PhotoImage(file = 'images/mama_pork.png').subsample(4, 4)
 images_potato_chips = PhotoImage(file = 'images/potato_chips.png').subsample(4, 4)
+images_gummy_bear = PhotoImage(file = 'images/gummy_bear.png').subsample(4, 4)
+images_broccoli = PhotoImage(file = 'images/broccoli.png').subsample(4, 4)
 
 # loginlayout()
 welcomepage().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news')
