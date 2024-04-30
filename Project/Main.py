@@ -36,8 +36,8 @@ def mainwindow() :
     root.option_add('*font', "Calibri 18 bold")
     root.rowconfigure((0, 1, 2, 3, 4, 5, 6), weight = 1) 
     root.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1) 
-    root.resizable(False,False)
-    mainframe = Frame(root, bg= '#9764b9')
+    root.resizable(False, False)
+    mainframe = Frame(root, bg = '#9764b9')
     mainframe.grid(row = 0, column = 0, columnspan = 5, rowspan = 6, sticky = 'news')
 
     return root
@@ -68,7 +68,7 @@ def loginlayout() :
     pwdentry.grid(row = 2, column = 1, columnspan = 3, padx = 30, sticky = 'e')
 
     loginBtn = tk.Button(loginframe, text = "LOGIN", width = 10, command = loginclick, bg = '#6d4584', fg = '#FFFFFF')
-    loginBtn.grid(row = 3, column = 1,columnspan=3, pady = 15, padx = 20, ipady = 2)
+    loginBtn.grid(row = 3, column = 1, columnspan = 3, pady = 15, padx = 20, ipady = 2)
     loginBtn.bind("<Enter>", lambda event: loginBtn.config(bg = '#320BB4'))
     loginBtn.bind("<Leave>", lambda event: loginBtn.config(bg = '#522AD3'))
 
@@ -98,14 +98,14 @@ def loginclick() :
         result = cursor.fetchall()
         if result :
             sql = "SELECT * FROM login WHERE username = ? AND password = ? "
-            cursor.execute(sql, [user,pwd])   
+            cursor.execute(sql, [user, pwd])   
             user_result = cursor.fetchone()
             if user_result :
                 messagebox.showinfo("", "Login Successfully")
                 print(user_result)
                 userinfo.set("") 
                 pwdinfo.set("")  
-                welcomepage().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news')
+                welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news')
             else :
                 messagebox.showwarning("Caution!", "Username or Password is invalid.")
                 pwdentry.delete(0, END)
@@ -136,7 +136,7 @@ def registlayout() :
     registframe.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), weight = 1)
     registframe.columnconfigure((0, 1, 2, 3), weight = 1)
     registframe.grid(row = 1, column = 2, columnspan = 2, rowspan = 5, sticky = 'news')
-    Label(registframe, text = 'Registration Form', font = 'Garamond 26 bold', fg = '#e4fbff',bg = '#5A37CE').grid(row = 0, column = 0, columnspan = 4, sticky = 'news')
+    Label(registframe, text = 'Registration Form', font = 'Garamond 26 bold', fg = '#e4fbff', bg = '#5A37CE').grid(row = 0, column = 0, columnspan = 4, sticky = 'news')
     Label(registframe, text = 'Student ID : ', font = 'Garamond 15 bold ', fg = '#e4fbff', bg = '#ece0f4').grid(row = 1, column = 1, sticky = 'e')
     student_id = Entry(registframe, width = 15, bg = '#d3e0ea')
     student_id.grid(row = 1, column = 2, sticky = 'w', padx = 15)
@@ -160,7 +160,7 @@ def registlayout() :
     newuser.grid(row = 5, column = 2, sticky = 'w', padx = 15)
 
     Label(registframe, text = 'Password : ', font = 'Garamond 15 bold ', fg = '#e4fbff', bg = '#ece0f4').grid(row = 6, column = 1, sticky = 'e')
-    newpwd = Entry(registframe,width=15, show = '*', bg = '#d3e0ea')
+    newpwd = Entry(registframe,width = 15, show = '*', bg = '#d3e0ea')
     newpwd.grid(row = 6, column = 2, sticky = 'w', padx = 15)
 
     Label(registframe, text = 'Confirm Password : ', font = 'Garamond 15 bold ', fg = '#e4fbff', bg = '#ece0f4').grid(row = 7, column = 1, sticky = 'e')
@@ -187,7 +187,6 @@ def registlayout() :
 
     student_id.focus_force()
 
-
 ###################
 ### Main Page  ###
 #################
@@ -204,27 +203,27 @@ def welcomepage() :
     # Label(welcomeframe, text = 'Welcome to Order Shop', font = 'Garamond 26 bold', fg = '#e4fbff',bg = '#c4a4dc').grid(row = 0, column = 0, columnspan = 3 , sticky = 'news')
     Label(welcomeframe, image = images_logo, bg = '#c4a4dc').grid(row = 0, column = 0, columnspan = 3 , sticky = 'news')
 
-    menuBtn = Button(welcomeframe, text="MENU", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:menu().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news'))    
+    menuBtn = Button(welcomeframe, text="MENU", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:menu().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))    
     menuBtn.grid(row = 1, column = 0, padx = 10, pady = 10, ipadx = 10, ipady = 5, sticky = 'news')
     menuBtn.bind("<Enter>", lambda event: menuBtn.config(bg = '#612388'))
     menuBtn.bind("<Leave>", lambda event: menuBtn.config(bg = '#8150a0'))
 
-    cartBtn = Button(welcomeframe, text="CART", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:cart().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news'))
+    cartBtn = Button(welcomeframe, text="CART", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:cart().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
     cartBtn.grid(row = 1, column = 1, padx = 10, pady = 10, ipadx = 10, ipady = 5, sticky = 'news')
     cartBtn.bind("<Enter>", lambda event: cartBtn.config(bg = '#612388'))
     cartBtn.bind("<Leave>", lambda event: cartBtn.config(bg = '#8150a0'))
 
-    reqBtn = Button(welcomeframe, text="SUPPORT", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:support().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news'))
+    reqBtn = Button(welcomeframe, text="SUPPORT", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:support().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
     reqBtn.grid(row = 1, column = 2, padx = 10, pady = 10, ipadx = 10, ipady = 5, sticky = 'news')
     reqBtn.bind("<Enter>", lambda event: reqBtn.config(bg = '#612388'))
     reqBtn.bind("<Leave>", lambda event: reqBtn.config(bg = '#8150a0'))
 
-    profBtn = Button(welcomeframe, text="PROFILE", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:profile().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news'))
+    profBtn = Button(welcomeframe, text="PROFILE", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:profile().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
     profBtn.grid(row = 2, column = 0, padx = 10, pady = 10, ipadx = 10, ipady = 5, sticky = 'news')
     profBtn.bind("<Enter>", lambda event: profBtn.config(bg = '#612388'))
     profBtn.bind("<Leave>", lambda event: profBtn.config(bg = '#8150a0'))
 
-    credBtn = Button(welcomeframe, text="CREDIT", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:credit().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news'))
+    credBtn = Button(welcomeframe, text="CREDIT", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:credit().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
     credBtn.grid(row = 2, column = 1, padx = 10, pady = 10, ipadx = 10, ipady = 5, sticky = 'news')
     credBtn.bind("<Enter>", lambda event: credBtn.config(bg = '#612388'))
     credBtn.bind("<Leave>", lambda event: credBtn.config(bg = '#8150a0'))
@@ -312,6 +311,7 @@ def registration() :
 #####################
 ### Logout Click ###
 ###################
+
 def logoutclick() :
     
     welcomeframe.destroy()
@@ -346,32 +346,32 @@ def menu(): ### Meat&Butchery , Processed Food , Vegetable , Fruit , Snack&Sweet
     Label(menuframe, text = 'Menu', font = 'Garamond 26 bold', fg = '#e4fbff',bg = '#c4a4dc').grid(row = 0, column = 0, columnspan = 6, sticky = 'news')
     Label(menuframe, image = images_logo2, fg = '#e4fbff',bg = '#c4a4dc').grid(row = 0, column = 0, sticky = 'news')
 
-    cartmenuBtn = Button(menuframe, text = 'Cart', font = 'Garamond 10 bold', width = 3, height = 1, fg = '#000000',bg = '#C9C9C9', command = lambda:cart().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news'))
+    cartmenuBtn = Button(menuframe, text = 'Cart', font = 'Garamond 10 bold', width = 3, height = 1, fg = '#000000',bg = '#C9C9C9', command = lambda:cart().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
     cartmenuBtn.grid(row = 0, column = 5, padx = 10, pady = 20, sticky = 'new')
     cartmenuBtn.bind("<Enter>", lambda event: cartmenuBtn.config(bg = '#A8A8A8'))
     cartmenuBtn.bind("<Leave>", lambda event: cartmenuBtn.config(bg = '#C9C9C9'))
     
-    meatBtn = Button(menuframe, text = "Meat&Butchery", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:meat(menuframe).grid(column=0, row=2,rowspan=3,columnspan=6,sticky='news'))
+    meatBtn = Button(menuframe, text = "Meat&Butchery", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:meat(menuframe).grid(column = 0, row = 2, rowspan = 3, columnspan = 6, sticky = 'news'))
     meatBtn.grid(row = 1, column = 0, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
     meatBtn.bind("<Enter>", lambda event: meatBtn.config(bg = '#612388'))
     meatBtn.bind("<Leave>", lambda event: meatBtn.config(bg = '#8150a0'))
     
-    procBtn = Button(menuframe, text = "Processed Food", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:processed(menuframe).grid(column=0, row=2, columnspan=6, rowspan=3, sticky='news'))
+    procBtn = Button(menuframe, text = "Processed Food", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:processed(menuframe).grid(column = 0, row = 2, columnspan = 6, rowspan = 3, sticky = 'news'))
     procBtn.grid(row = 1, column = 1, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
     procBtn.bind("<Enter>", lambda event: procBtn.config(bg = '#612388'))
     procBtn.bind("<Leave>", lambda event: procBtn.config(bg = '#8150a0'))
     
-    veggieBtn = Button(menuframe, text = "Vegetable", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:vegetable(menuframe).grid(column=0, row=2, columnspan=6, rowspan=3, sticky='news'))
+    veggieBtn = Button(menuframe, text = "Vegetable", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:vegetable(menuframe).grid(column = 0, row = 2, columnspan = 6, rowspan = 3, sticky = 'news'))
     veggieBtn.grid(row = 1, column = 2, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
     veggieBtn.bind("<Enter>", lambda event: veggieBtn.config(bg = '#612388'))
     veggieBtn.bind("<Leave>", lambda event: veggieBtn.config(bg = '#8150a0'))
     
-    fruitBtn = Button(menuframe, text = "Fruit", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:fruit(menuframe).grid(column=0, row=2, columnspan=6, rowspan=3, sticky='news'))
+    fruitBtn = Button(menuframe, text = "Fruit", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:fruit(menuframe).grid(column = 0, row = 2, columnspan = 6, rowspan = 3, sticky = 'news'))
     fruitBtn.grid(row = 1, column = 3, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
     fruitBtn.bind("<Enter>", lambda event: fruitBtn.config(bg = '#612388'))
     fruitBtn.bind("<Leave>", lambda event: fruitBtn.config(bg = '#8150a0'))
     
-    snsStn = Button(menuframe, text = "Snack&Sweet", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:snack(menuframe).grid(column=0, row=2, columnspan=6, rowspan=3, sticky='news'))
+    snsStn = Button(menuframe, text = "Snack&Sweet", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:snack(menuframe).grid(column = 0, row = 2, columnspan = 6, rowspan = 3, sticky = 'news'))
     snsStn.grid(row = 1, column = 4, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
     snsStn.bind("<Enter>", lambda event: snsStn.config(bg = '#612388'))
     snsStn.bind("<Leave>", lambda event: snsStn.config(bg = '#8150a0'))
@@ -383,6 +383,9 @@ def menu(): ### Meat&Butchery , Processed Food , Vegetable , Fruit , Snack&Sweet
     
     return menuframe
 
+#####################
+### Profile Edit ###
+###################
 
 def profile():
 
@@ -395,70 +398,121 @@ def profile():
     Label(profileframe, text = 'Profile', font = 'Garamond 26 bold', fg = '#e4fbff',bg = '#c4a4dc').grid(row = 0, column = 0, columnspan = 6, sticky = 'news')
     Label(profileframe, image = images_logo2, fg = '#e4fbff',bg = '#c4a4dc').grid(row = 0, column = 0, sticky = 'news')
 
+    backkkBtn = Button(profileframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 5, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    backkkBtn.grid(row = 1, column = 0, padx = 10, pady = 10 , sticky = 'wn') 
+    backkkBtn.bind("<Enter>", lambda event: backkkBtn.config(bg = '#612388'))
+    backkkBtn.bind("<Leave>", lambda event: backkkBtn.config(bg = '#8150a0')) 
+
     return profileframe
 
-def support():
+#####################
+### Support Page ###
+###################
+
+def support(): 
 
     supportframe = Frame(root, bg = '#ece0f4')
-    supportframe.rowconfigure((0), weight = 1)
-    supportframe.rowconfigure((1), weight = 2)
-    supportframe.columnconfigure((0, 1, 2), weight = 1)
+    supportframe.rowconfigure((0, 1, 2, 3 , 4, 5, 6), weight = 1)
+    supportframe.columnconfigure((0, 1, 2, 3), weight = 1)
     supportframe.option_add('*font', "Garamond 11 bold")
 
+    Label(supportframe, text = 'Support', font = 'Garamond 26 bold', fg = '#e4fbff',bg = '#c4a4dc').grid(row = 0, column = 0, columnspan = 4, sticky = 'news')
+    Label(supportframe, image = images_logo2, fg = '#e4fbff',bg = '#c4a4dc').grid(row = 0, column = 0, sticky = 'news')
+
+    backkkBtn = Button(supportframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 5, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    backkkBtn.grid(row = 1, column = 0, padx = 10, pady = 10 , sticky = 'wn') 
+    backkkBtn.bind("<Enter>", lambda event: backkkBtn.config(bg = '#612388'))
+    backkkBtn.bind("<Leave>", lambda event: backkkBtn.config(bg = '#8150a0')) 
+
+    Label(supportframe, text = 'Name : ', fg = '#000000', bg = '#ece0f4', width = 5, height = 2).grid(row = 1, column = 1, padx = 10, pady = 5, sticky = 'wn')
+    Label(supportframe, text = 'Description : ', fg = '#000000', bg = '#ece0f4').grid(row = 3, column = 1,padx = 5, pady = 5, sticky = 'wn')
+
+    nameEnt = Entry(supportframe, fg = '#000000', bg = '#e4fbff', width = 30)
+    nameEnt.grid(row = 2, column = 1, sticky = 'wen', columnspan = 2, ipady = 3)
+    descEnt = Entry(supportframe, fg = '#000000', bg = '#e4fbff', width = 30)
+    descEnt.grid(row = 4, column = 1, sticky = 'ewn', ipadx = 10 , ipady = 75, columnspan = 2, rowspan = 2)
+
+    suppsubBth = Button(supportframe, text = 'Submit', bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    suppsubBth.grid(row = 6, column = 1, padx = 20, pady = 20, sticky = 'ew')
+    suppsubBth.bind("<Enter>", lambda event: suppsubBth.config(bg = '#612388'))
+    suppsubBth.bind("<Leave>", lambda event: suppsubBth.config(bg = '#8150a0'))
+
     return supportframe
+
+##################
+### Cart Page ###
+################
 
 def cart():
 
     cartframe = Frame(root, bg = '#ece0f4')
     return cartframe
 
+####################
+### Credit Page ###
+##################
+
 def credit():
 
     creditframe = Frame(root, bg = '#ece0f4')
     return creditframe
 
-def meat(frame):
+############################
+### Meat&Butchery Goods ###
+##########################
 
+def meat(frame):
+    data = fetchmenu("Meat&Butchery")
     meatframe = Frame(frame, bg = '#ece0f4')
     meatframe.rowconfigure((0,1,2), weight = 1)
     meatframe.rowconfigure((0, 1, 2, 3, 4, 5), weight = 1)
     meatframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
 
-    backkBtn = Button(meatframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news'))
+    backkBtn = Button(meatframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
     backkBtn.grid(row = 4, column = 0, padx = 10 , sticky = 'news') 
     backkBtn.bind("<Enter>", lambda event: backkBtn.config(bg = '#612388'))
     backkBtn.bind("<Leave>", lambda event: backkBtn.config(bg = '#8150a0'))
-    
-    Label(meatframe, image = images_porkshoulder, compound = LEFT, bg = '#ece0f4').grid(row = 0, column = 0, sticky = 'news')
-    Label(meatframe, text = 'Pork Shoulder\n 100 THB : 1 KG\nQuantity : 25', font = 'Garamond 12 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = 0, padx = 50, sticky = 'nws')
-    porksh = Spinbox(meatframe, from_ = 0, to = 25, width = 8)
-    porksh.grid(row = 2, column = 0, padx = 50 , sticky = 'news')
-    porksh.configure(justify = CENTER, state = 'readonly')
+    for i in range(4):
+        pic = PhotoImage(file=f"Project/{data[i][5]}").subsample(4, 4)
+        label = Label(meatframe, image=pic, compound=LEFT, bg='#ece0f4')
+        label.image = pic  # Keep a reference to the image to prevent it from being garbage collected
+        label.grid(row=0, column=i, sticky='news')
+        # pic = PhotoImage(file = f"Project/{data[i][5]}").subsample(4, 4)
+        # print(f"Project/{data[i][5]}")
+        # Label(meatframe, image = pic, compound = LEFT, bg = '#ece0f4').grid(row = 0, column = i, sticky = 'news')
+        Label(meatframe, text = f'{data[i][1]}\n {data[i][4]} THB : 1 KG\nQuantity : 25', font = 'Garamond 12 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = i, padx = 50, sticky = 'nws')
+        porksh = Spinbox(meatframe, from_ = 0, to = 25, width = 8)
+        porksh.grid(row = 2, column = i, padx = 50 , sticky = 'news')
+        porksh.configure(justify = CENTER, state = 'readonly')
 
-    Label(meatframe, image = images_porkleg, compound = LEFT,bg = '#ece0f4').grid(row = 0, column = 1, sticky = 'news')
-    Label(meatframe, text = 'Pork Leg\n 150 THB : 1 KG\nQuantity : 25', font = 'Garamond 12 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = 1, padx = 50, sticky = 'nws')
-    porklg = Spinbox(meatframe, from_ = 0, to = 25, width = 8)
-    porklg.grid(row = 2, column = 1, padx = 50 , sticky = 'news')
-    porklg.configure(justify = CENTER, state = 'readonly')
+    # Label(meatframe, image = images_porkleg, compound = LEFT,bg = '#ece0f4').grid(row = 0, column = 1, sticky = 'news')
+    # Label(meatframe, text = 'Pork Leg\n 150 THB : 1 KG\nQuantity : 25', font = 'Garamond 12 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = 1, padx = 50, sticky = 'nws')
+    # porklg = Spinbox(meatframe, from_ = 0, to = 25, width = 8)
+    # porklg.grid(row = 2, column = 1, padx = 50 , sticky = 'news')
+    # porklg.configure(justify = CENTER, state = 'readonly')
 
-    Label(meatframe, image = images_sausage, compound = LEFT,bg = '#ece0f4').grid(row = 0, column = 2, sticky = 'news')
-    Label(meatframe, text = 'Sausage\n 30 THB\nQuantity : 25', font = 'Garamond 12 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = 2, padx = 50, sticky = 'nws')
-    sausage = Spinbox(meatframe, from_ = 0, to = 25, width = 8)
-    sausage.grid(row = 2, column = 2, padx = 50 , sticky = 'news')
-    sausage.configure(justify = CENTER, state = 'readonly')
+    # Label(meatframe, image = images_sausage, compound = LEFT,bg = '#ece0f4').grid(row = 0, column = 2, sticky = 'news')
+    # Label(meatframe, text = 'Sausage\n 30 THB\nQuantity : 25', font = 'Garamond 12 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = 2, padx = 50, sticky = 'nws')
+    # sausage = Spinbox(meatframe, from_ = 0, to = 25, width = 8)
+    # sausage.grid(row = 2, column = 2, padx = 50 , sticky = 'news')
+    # sausage.configure(justify = CENTER, state = 'readonly')
 
-    Label(meatframe, image = images_picanha, compound = LEFT,bg = '#ece0f4').grid(row = 0, column = 3, sticky = 'news')
-    Label(meatframe, text = 'Picanha\n 400 THB : 1 KG\nQuantity : 25', font = 'Garamond 12 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = 3,padx = 50, sticky = 'nws')
-    picanha = Spinbox(meatframe, from_ = 0, to = 25, width = 8)
-    picanha.grid(row = 2, column = 3, padx = 50 , sticky = 'news')
-    picanha.configure(justify = CENTER, state = 'readonly')
+    # Label(meatframe, image = images_picanha, compound = LEFT,bg = '#ece0f4').grid(row = 0, column = 3, sticky = 'news')
+    # Label(meatframe, text = 'Picanha\n 400 THB : 1 KG\nQuantity : 25', font = 'Garamond 12 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = 3,padx = 50, sticky = 'nws')
+    # picanha = Spinbox(meatframe, from_ = 0, to = 25, width = 8)
+    # picanha.grid(row = 2, column = 3, padx = 50 , sticky = 'news')
+    # picanha.configure(justify = CENTER, state = 'readonly')
 
-    nextBtn = Button(meatframe, text = "Next", bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news'))
-    nextBtn.grid(row = 4, column = 3,padx = 30 , sticky = 'news')
-    nextBtn.bind("<Enter>", lambda event: nextBtn.config(bg = '#612388'))
-    nextBtn.bind("<Leave>", lambda event: nextBtn.config(bg = '#8150a0'))
+    # nextBtn = Button(meatframe, text = "Next", bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    # nextBtn.grid(row = 4, column = 3,padx = 30 , sticky = 'news')
+    # nextBtn.bind("<Enter>", lambda event: nextBtn.config(bg = '#612388'))
+    # nextBtn.bind("<Leave>", lambda event: nextBtn.config(bg = '#8150a0'))
 
     return meatframe
+
+#############################
+### Processed Food Goods ###
+###########################
 
 def processed(frame):
 
@@ -467,7 +521,7 @@ def processed(frame):
     processedframe.rowconfigure((0, 1, 2, 3, 4, 5), weight = 1)
     processedframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
 
-    backkBtn = Button(processedframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news'))
+    backkBtn = Button(processedframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
     backkBtn.grid(row = 4, column = 0, padx = 10 , sticky = 'news') 
     backkBtn.bind("<Enter>", lambda event: backkBtn.config(bg = '#612388'))
     backkBtn.bind("<Leave>", lambda event: backkBtn.config(bg = '#8150a0'))
@@ -475,29 +529,93 @@ def processed(frame):
 
     return processedframe
 
-def vegetable():
+#####################
+### Veggie Goods ###
+###################
 
-    vegetableframe = Frame(root, bg = '#ece0f4')
+def vegetable(frame):
+
+    vegetableframe = Frame(frame, bg = '#ece0f4')
+    vegetableframe.rowconfigure((0,1,2), weight = 1)
+    vegetableframe.rowconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+    vegetableframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+
+    backkBtn = Button(vegetableframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    backkBtn.grid(row = 4, column = 0, padx = 10 , sticky = 'news') 
+    backkBtn.bind("<Enter>", lambda event: backkBtn.config(bg = '#612388'))
+    backkBtn.bind("<Leave>", lambda event: backkBtn.config(bg = '#8150a0'))
+
     return vegetableframe
 
-def fruit():
+####################
+### Fruit Goods ###
+##################
 
-    fruitframe = Frame(root, bg = '#ece0f4')
+def fruit(frame):
+
+    fruitframe = Frame(frame, bg = '#ece0f4')
+    fruitframe.rowconfigure((0,1,2), weight = 1)
+    fruitframe.rowconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+    fruitframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+
+    backkBtn = Button(fruitframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    backkBtn.grid(row = 4, column = 0, padx = 10 , sticky = 'news') 
+    backkBtn.bind("<Enter>", lambda event: backkBtn.config(bg = '#612388'))
+    backkBtn.bind("<Leave>", lambda event: backkBtn.config(bg = '#8150a0'))
+
     return fruitframe
 
-def snack():
+##########################
+### Snack&Sweet Goods ###
+########################
 
-    snackframe = Frame(root, bg = '#ece0f4')
+def snack(frame):
+
+    snackframe = Frame(frame, bg = '#ece0f4')
+    snackframe.rowconfigure((0,1,2), weight = 1)
+    snackframe.rowconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+    snackframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+
+    backkBtn = Button(snackframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    backkBtn.grid(row = 4, column = 0, padx = 10 , sticky = 'news') 
+    backkBtn.bind("<Enter>", lambda event: backkBtn.config(bg = '#612388'))
+    backkBtn.bind("<Leave>", lambda event: backkBtn.config(bg = '#8150a0'))
+
     return snackframe
 
-def beverage():
+#######################
+### Beverage Goods ###
+#####################
 
-    beverageframe = Frame(root, bg = '#ece0f4')
+def beverage(frame):
+
+    beverageframe = Frame(frame, bg = '#ece0f4')
+    beverageframe.rowconfigure((0,1,2), weight = 1)
+    beverageframe.rowconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+    beverageframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+
+    backkBtn = Button(beverageframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    backkBtn.grid(row = 4, column = 0, padx = 10 , sticky = 'news') 
+    backkBtn.bind("<Enter>", lambda event: backkBtn.config(bg = '#612388'))
+    backkBtn.bind("<Leave>", lambda event: backkBtn.config(bg = '#8150a0'))
+    
     return beverageframe
 
+###################
+### Connection ###
+#################
 
 createconnection()
+def fetchmenu(type):
+    sql = 'SELECT * FROM goods WHERE type = ?'
+    cursor.execute(sql, [type])   
+    result = cursor.fetchall()
+    return result
 root = mainwindow()
+
+##################
+### Variables ###
+################
 
 userinfo = StringVar() 
 pwdinfo = StringVar()
@@ -534,8 +652,14 @@ images_bokchoy = PhotoImage(file = 'Project/images/bokchoy.png').subsample(4, 4)
 images_cannedfish = PhotoImage(file = 'Project/images/cannedfish.png').subsample(4, 4)
 
 # loginlayout()
-welcomepage().grid(column=0, row=0, columnspan=6, rowspan=7, sticky='news')
+welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news')
 root.mainloop()
+
+#########################
+### Close Connection ###
+#######################
+
+print(fetchmenu("Meat&Butchery"))
 
 cursor.close() 
 conn.close()
