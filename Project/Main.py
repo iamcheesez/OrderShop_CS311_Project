@@ -238,7 +238,7 @@ def managerpage() :
     # Label(managerframe, text = 'Order Shop Management', font = 'Garamond 26 bold', fg = '#e4fbff', bg = '#5A37CE').grid(row = 0, column = 0, columnspan = 3, sticky = 'news')
     Label(managerframe, image = images_logo2, fg = '#e4fbff', bg = '#c4a4dc').grid(row = 0, column = 0, columnspan = 3, sticky = 'news')
 
-    menuuBtn = Button(managerframe, text = "EDIT MENU", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:menuu().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    menuuBtn = Button(managerframe, text = "EDIT MENU", font = 'Garamond 15 bold', bg = '#8150a0', fg = '#e4fbff', borderwidth = 0, command = lambda:menu_edit().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
     menuuBtn.grid(row = 1, column = 0, padx = 10, pady = 10, ipadx = 10, ipady = 5, sticky = 'news')
     menuuBtn.bind("<Enter>", lambda event: menuuBtn.config(bg = '#612388'))
     menuuBtn.bind("<Leave>", lambda event: menuuBtn.config(bg = '#8150a0'))
@@ -269,7 +269,7 @@ def managerpage() :
 ### Edit Menu Page ###
 #####################
 
-def menuu() :
+def menu_edit() :
 
     global menuuframe
 
@@ -439,18 +439,42 @@ def orderlist() :
 
     global orderlistframe
 
-    orderlistframe = Frame(root, bg = '#ece0f4')
-    orderlistframe.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9), weight = 1)
-    orderlistframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
-    orderlistframe.grid(row = 1, column = 0, columnspan = 6, rowspan = 7, sticky = 'news')
+    orderlistframe = Frame(root, bg='#ece0f4')
+    orderlistframe.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9), weight=1)
+    orderlistframe.columnconfigure((0, 1, 2, 3, 4, 5), weight=1)
+    orderlistframe.grid(row=1, column=0, columnspan=6, rowspan=7, sticky='news')
 
-    Label(orderlistframe, text = 'Order List', font = 'Garamond 26 bold', fg = '#e4fbff', bg = '#c4a4dc').grid(row = 0, column = 0, columnspan = 6, sticky = 'news')
-    Label(orderlistframe, image = images_logo2, fg = '#e4fbff', bg = '#c4a4dc').grid(row = 0, column = 0, columnspan = 6, sticky = 'news')
+    Label(orderlistframe, text='Order List', font='Garamond 26 bold', fg='#e4fbff', bg='#c4a4dc').grid(row=0,
+                                                                                                        column=0,
+                                                                                                        columnspan=6,
+                                                                                                        sticky='news')
+    Label(orderlistframe, image=images_logo2, fg='#e4fbff', bg='#c4a4dc').grid(row=0, column=0, columnspan=6,
+                                                                               sticky='news')
 
-    backkkBtn = Button(orderlistframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 5, height = 1 , borderwidth = 0, command = lambda:orderlistframe.destroy())
-    backkkBtn.grid(row = 1, column = 0, padx = 10, pady = 10 , sticky = 'wn') 
-    backkkBtn.bind("<Enter>", lambda event: backkkBtn.config(bg = '#612388'))
-    backkkBtn.bind("<Leave>", lambda event: backkkBtn.config(bg = '#8150a0'))
+    backkkBtn = Button(orderlistframe, text="Back", bg='#8150a0', fg='#e4fbff', width=5, height=1, borderwidth=0,
+                       command=lambda: orderlistframe.destroy())
+    backkkBtn.grid(row=1, column=0, padx=10, pady=10, sticky='wn')
+    backkkBtn.bind("<Enter>", lambda event: backkkBtn.config(bg='#612388'))
+    backkkBtn.bind("<Leave>", lambda event: backkkBtn.config(bg='#8150a0'))
+
+    # create table
+    tree = Treeview(orderlistframe, column=("ID", "Time", "Name", "Price"), show="headings")
+    tree.heading("ID", text="ID")
+    tree.heading("Time", text="Time")
+    tree.heading("Name", text="Name")
+    tree.heading("Price", text="Price")
+    tree.column("ID", width=100)
+    tree.column("Time", width=100)
+    tree.column("Name", width=100)
+    tree.column("Price", width=100)
+    tree.grid(row=2, column=0, columnspan=6, sticky='news')
+
+    cursor.execute("SELECT * FROM history")
+    result = cursor.fetchall()
+
+    # insert data to table
+    for row in result:
+        tree.insert("", "end", values=row)
 
     return orderlistframe
 
