@@ -26,7 +26,9 @@ def createconnection() :
 #############
 ### Main ###
 ###########
+
 userdata = []
+
 def mainwindow() :
 
     global mainframe
@@ -286,7 +288,197 @@ def menu_edit() :
     backkkBtn.bind("<Enter>", lambda event: backkkBtn.config(bg = '#612388'))
     backkkBtn.bind("<Leave>", lambda event: backkkBtn.config(bg = '#8150a0'))
 
+    meatBtn = Button(menuuframe, text = "Meat&Butchery", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:meatt(menuuframe, 'Meat&Butchery').grid(column = 0, row = 2, rowspan = 3, columnspan = 6, sticky = 'news'))
+    meatBtn.grid(row = 1, column = 0, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
+    meatBtn.bind("<Enter>", lambda event: meatBtn.config(bg = '#612388'))
+    meatBtn.bind("<Leave>", lambda event: meatBtn.config(bg = '#8150a0'))
+    
+    procBtn = Button(menuuframe, text = "Processed Food", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:meatt(menuuframe, 'Processed food').grid(column = 0, row = 2, columnspan = 6, rowspan = 3, sticky = 'news'))
+    procBtn.grid(row = 1, column = 1, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
+    procBtn.bind("<Enter>", lambda event: procBtn.config(bg = '#612388'))
+    procBtn.bind("<Leave>", lambda event: procBtn.config(bg = '#8150a0'))
+    
+    veggieBtn = Button(menuuframe, text = "Vegetable", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:meatt(menuuframe, 'Vegetable').grid(column = 0, row = 2, columnspan = 6, rowspan = 3, sticky = 'news'))
+    veggieBtn.grid(row = 1, column = 2, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
+    veggieBtn.bind("<Enter>", lambda event: veggieBtn.config(bg = '#612388'))
+    veggieBtn.bind("<Leave>", lambda event: veggieBtn.config(bg = '#8150a0'))
+    
+    fruitBtn = Button(menuuframe, text = "Fruit", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:meatt(menuuframe, 'Fruit').grid(column = 0, row = 2, columnspan = 6, rowspan = 3, sticky = 'news'))
+    fruitBtn.grid(row = 1, column = 3, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
+    fruitBtn.bind("<Enter>", lambda event: fruitBtn.config(bg = '#612388'))
+    fruitBtn.bind("<Leave>", lambda event: fruitBtn.config(bg = '#8150a0'))
+    
+    snsStn = Button(menuuframe, text = "Snack&Sweet", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:meatt(menuuframe, 'Snack&Sweet').grid(column = 0, row = 2, columnspan = 6, rowspan = 3, sticky = 'news'))
+    snsStn.grid(row = 1, column = 4, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
+    snsStn.bind("<Enter>", lambda event: snsStn.config(bg = '#612388'))
+    snsStn.bind("<Leave>", lambda event: snsStn.config(bg = '#8150a0'))
+    
+    bevBtn = Button(menuuframe, text = "Beverage", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 2, borderwidth = 0, command = lambda:meatt(menuuframe, 'Beverage').grid(column=0, row=2, columnspan=6, rowspan=3, sticky='news'))
+    bevBtn.grid(row = 1, column = 5, padx = 5, pady = 5, ipadx = 10, sticky = 'new')
+    bevBtn.bind("<Enter>", lambda event: bevBtn.config(bg = '#612388'))
+    bevBtn.bind("<Leave>", lambda event: bevBtn.config(bg = '#8150a0'))
+
     return menuuframe
+
+###########################
+### Meat&Butchery Edit ###
+#########################
+
+def meatt(frame,typechoose) :
+
+    global meattframe
+
+    meattframe = Frame(frame, bg = '#ece0f4')
+    meattframe.rowconfigure((0, 1, 2), weight = 1)
+    meattframe.rowconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+    meattframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+
+    # backkBtn = Button(meattframe, text = "Back", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 1, borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    backkBtn = Button(meattframe, text = "Back", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 1, borderwidth = 0, command = lambda:frame.destroy())
+    backkBtn.grid(row = 4, column = 0, padx = 10, sticky = 'news') 
+    backkBtn.bind("<Enter>", lambda event: backkBtn.config(bg = '#612388'))
+    backkBtn.bind("<Leave>", lambda event: backkBtn.config(bg = '#8150a0'))
+
+    # create table
+
+    tree = Treeview(meattframe, column = ("ID", "Name", "Quantity", "Catergory", "Price", "Path"), show = 'headings')
+    tree.heading("ID", text = "ID")
+    tree.heading("Name", text = "Name")
+    tree.heading("Quantity", text = "Quantity")
+    tree.heading("Catergory", text = "Catergory")
+    tree.heading("Price", text = "Price")
+    tree.heading("Path", text = "Path")
+
+    tree.column("ID", width = 50)
+    tree.column("Name", width = 150)
+    tree.column("Quantity", width = 150)
+    tree.column("Catergory", width = 150)
+    tree.column("Price", width = 150)
+    tree.column("Path", width = 150)
+
+    tree.grid(row = 0, column = 0, columnspan = 6, rowspan = 3, sticky = 'news')
+
+    sql = "SELECT * FROM goods WHERE type = ?"
+    cursor.execute(sql,[typechoose])
+    result = cursor.fetchall()
+
+    for i in result :
+            
+            tree.insert("", "end", values = i)
+
+    # Edit button to edit goods
+
+    editBtn = Button(meattframe, text = "Edit", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 1, borderwidth = 0, command = lambda:editgoods(tree))
+    editBtn.grid(row = 4, column = 1, padx = 10, sticky = 'news')
+    editBtn.bind("<Enter>", lambda event: editBtn.config(bg = '#612388'))
+    editBtn.bind("<Leave>", lambda event: editBtn.config(bg = '#8150a0'))
+
+    # Delete button to delete goods
+
+    deleteBtn = Button(meattframe, text = "Delete", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 1, borderwidth = 0, command = lambda:deletegoods(tree))
+    deleteBtn.grid(row = 4, column = 2, padx = 10, sticky = 'news')
+    deleteBtn.bind("<Enter>", lambda event: deleteBtn.config(bg = '#612388'))
+    deleteBtn.bind("<Leave>", lambda event: deleteBtn.config(bg = '#8150a0'))
+
+    return meattframe
+
+########################
+### edit goods page ###
+######################
+
+def editgoods(tree) :
+
+    global editframe
+
+    editframe = Frame(root, bg = '#ece0f4')
+    editframe.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9), weight = 1)
+    editframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
+    editframe.grid(row = 0, column = 0, columnspan = 6, rowspan = 7, sticky = 'news')
+
+    Label(editframe, text = 'Edit Goods', font = 'Garamond 26 bold', fg = '#e4fbff', bg = '#c4a4dc').grid(row = 0, column = 0, columnspan = 6, sticky = 'news')
+    Label(editframe, image = images_logo2, fg = '#e4fbff', bg = '#c4a4dc').grid(row = 0, column = 0, columnspan = 6, sticky = 'news')
+
+    backkkBtn = Button(editframe, text = "Back", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 1, borderwidth = 0, command = lambda:editframe.destroy())
+    backkkBtn.grid(row = 1, column = 0, padx = 10, sticky = 'news') 
+    backkkBtn.bind("<Enter>", lambda event: backkkBtn.config(bg = '#612388'))
+    backkkBtn.bind("<Leave>", lambda event: backkkBtn.config(bg = '#8150a0'))
+    
+
+    # get selected item
+
+    selected = tree.focus()
+    values = tree.item(selected, 'values')
+
+    # create entry
+
+    Label(editframe, text = 'ID : ', font = 'Garamond 15 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 2, column = 1, sticky = 'e')
+    Label(editframe, text = 'Name : ', font = 'Garamond 15 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 3, column = 1, sticky = 'e')
+    Label(editframe, text = 'Quantity : ', font = 'Garamond 15 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 4, column = 1, sticky = 'e')
+    Label(editframe, text = 'Catergory : ', font = 'Garamond 15 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 5, column = 1, sticky = 'e')
+    Label(editframe, text = 'Price : ', font = 'Garamond 15 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 6, column = 1, sticky = 'e')
+    Label(editframe, text = 'Path : ', font = 'Garamond 15 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 7, column = 1, sticky = 'e')
+
+    id = Entry(editframe, bg = '#e4fbff', width = 36, textvariable = StringVar(value = values[0]), state = 'readonly')
+    id.grid(row = 2, column = 2, padx = 30, sticky = 'w')
+    name = Entry(editframe, bg = '#e4fbff', width = 36, textvariable = StringVar(value = values[1]))
+    name.grid(row = 3, column = 2, padx = 30, sticky = 'w')
+    quantity = Entry(editframe, bg = '#e4fbff', width = 36, textvariable = StringVar(value = values[2]))
+    quantity.grid(row = 4, column = 2, padx = 30, sticky = 'w')
+    catergory = Entry(editframe, bg = '#e4fbff', width = 36, textvariable = StringVar(value = values[3]))
+    catergory.grid(row = 5, column = 2, padx = 30, sticky = 'w')
+    price = Entry(editframe, bg = '#e4fbff', width = 36, textvariable = StringVar(value = values[4]))
+    price.grid(row = 6, column = 2, padx = 30, sticky = 'w')
+    path = Entry(editframe, bg = '#e4fbff', width = 36, textvariable = StringVar(value = values[5]))
+    path.grid(row = 7, column = 2, padx = 30, sticky = 'w')
+
+    # update button
+
+    updateBtn = Button(editframe, text = "Update", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 1, borderwidth = 0, command = lambda:updategoods(id, name, quantity, catergory, price, path))
+    updateBtn.grid(row = 8, column = 2, padx = 10, sticky = 'news')
+    updateBtn.bind("<Enter>", lambda event: updateBtn.config(bg = '#612388'))
+    updateBtn.bind("<Leave>", lambda event: updateBtn.config(bg = '#8150a0'))
+
+    return editframe
+
+#####################
+### Update Goods ###
+###################
+
+def updategoods(id, name, quantity, catergory, price, path) :
+
+    id = id.get()
+    name = name.get()
+    quantity = quantity.get()
+    catergory = catergory.get()
+    price = price.get()
+    path = path.get()
+
+    sql = "UPDATE goods SET pname = ?, quantity = ?, type = ?, price = ?, gpath = ? WHERE gno = ?"
+    cursor.execute(sql, [name, quantity, catergory, price, path, id])
+    conn.commit()
+
+    messagebox.showinfo("", "Goods updated successfully")
+    meattframe.destroy()
+    meatt(meattframe)
+
+
+#####################
+### Delete Goods ###
+###################
+
+def deletegoods(tree) :
+
+    selected = tree.focus()
+    values = tree.item(selected, 'values')
+    id = values[0]
+
+    sql = "DELETE FROM goods WHERE gno = ?"
+    cursor.execute(sql, [id])
+    conn.commit()
+
+    messagebox.showinfo("", "Goods deleted successfully")
+    meattframe.destroy()
+    meatt(meattframe)
 
 #######################
 ### Add Goods Page ###
@@ -884,6 +1076,7 @@ def cartp() :
     def checkout() :
 
         sql = "INSERT INTO history (idno,time,pname,price) VALUES(?, ?, ?,?)"
+        up_sql = "UPDATE goods SET quantity = quantity - ? WHERE pname = ?"
 
         Label(cartframe, image = images_qr, bg = '#ece0f4').grid(row = 2, column = 5, padx = 10, sticky = 'nes')
 
@@ -896,6 +1089,7 @@ def cartp() :
 
             else :
 
+                cursor.execute(up_sql, [cart[list(cart.keys())[i]], list(cart.keys())[i]])
                 cursor.execute(sql, [userdata[0][0], datetime.datetime.now(), list(cart.keys())[i], list(prize.values())[i]])
                 conn.commit()
                 # table.insert(parent='', index='end', iid=i, text='', values=(list(cart.keys())[i], list(cart.values())[i], list(prize.values())[i]))
