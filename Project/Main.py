@@ -59,8 +59,8 @@ def loginlayout() :
     loginframe.grid(row = 2, column = 2, columnspan = 2, rowspan = 3, sticky = 'news')
 
     Label(loginframe, image = images_logo, bg = '#ece0f4').grid(row = 0 , column = 0, columnspan = 7, sticky = 'news')
-    Label(loginframe, text = 'Username :', font = 'Calibri 25 ', fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = 1, columnspan = 3, sticky = 'w')
-    Label(loginframe, text = 'Password :', font = 'Calibri 25 ', fg = '#3b204b', bg = '#ece0f4').grid(row = 2, column = 1, columnspan = 3,  sticky = 'w')
+    Label(loginframe, text = 'Username :', font = 'Calibri 25 ',fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = 1, columnspan = 3, sticky = 'w')
+    Label(loginframe, text = 'Password :', font = 'Calibri 25 ',fg = '#3b204b', bg = '#ece0f4').grid(row = 2, column = 1, columnspan = 3,  sticky = 'w')
 
     userentry = Entry(loginframe, bg = '#e4fbff', width = 36,  textvariable = userinfo)
     userentry.grid(row = 1, column = 1, columnspan = 3, padx = 30, sticky = 'e')
@@ -89,7 +89,7 @@ def loginclick() :
     user = userinfo.get()
     pwd = pwdinfo.get()
 
-    if userentry.get() == "" or pwdentry.get() == "":
+    if userentry.get() == "" or pwdentry.get() == "" :
         messagebox.showwarning("Caution!", "Please enter username/password first.")
         userentry.focus_force()
     else :
@@ -335,7 +335,7 @@ def retrivedata() :
 ### Product Menu ###
 ###################
 
-def menu(): ### Meat&Butchery , Processed Food , Vegetable , Fruit , Snack&Sweet , Beverage ###
+def menu() : ### Meat&Butchery , Processed Food , Vegetable , Fruit , Snack&Sweet , Beverage ###
 
     menuframe = Frame(root, bg = '#ece0f4')
     menuframe.rowconfigure((0, 1), weight = 1)
@@ -387,7 +387,7 @@ def menu(): ### Meat&Butchery , Processed Food , Vegetable , Fruit , Snack&Sweet
 ### Profile Edit ###
 ###################
 
-def profile():
+def profile() :
 
     profileframe = Frame(root, bg = '#ece0f4')
     profileframe.rowconfigure((0), weight = 1)
@@ -409,7 +409,7 @@ def profile():
 ### Support Page ###
 ###################
 
-def support(): 
+def support() : 
 
     supportframe = Frame(root, bg = '#ece0f4')
     supportframe.rowconfigure((0, 1, 2, 3 , 4, 5, 6), weight = 1)
@@ -443,7 +443,7 @@ def support():
 ### Cart Page ###
 ################
 
-def cart():
+def cart() :
 
     cartframe = Frame(root, bg = '#ece0f4')
     return cartframe
@@ -452,7 +452,7 @@ def cart():
 ### Credit Page ###
 ##################
 
-def credit():
+def credit() :
 
     creditframe = Frame(root, bg = '#ece0f4')
     return creditframe
@@ -461,28 +461,30 @@ def credit():
 ### Meat&Butchery Goods ###
 ##########################
 
-def meat(frame):
+def meat(frame) :
     data = fetchmenu("Meat&Butchery")
     meatframe = Frame(frame, bg = '#ece0f4')
-    meatframe.rowconfigure((0,1,2), weight = 1)
+    meatframe.rowconfigure((0, 1, 2), weight = 1)
     meatframe.rowconfigure((0, 1, 2, 3, 4, 5), weight = 1)
     meatframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
 
-    backkBtn = Button(meatframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
-    backkBtn.grid(row = 4, column = 0, padx = 10 , sticky = 'news') 
+    backkBtn = Button(meatframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1, borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    backkBtn.grid(row = 4, column = 0, padx = 10, sticky = 'news') 
     backkBtn.bind("<Enter>", lambda event: backkBtn.config(bg = '#612388'))
     backkBtn.bind("<Leave>", lambda event: backkBtn.config(bg = '#8150a0'))
-    for i in range(4):
-        pic = PhotoImage(file=f"Project/{data[i][5]}").subsample(4, 4)
-        label = Label(meatframe, image=pic, compound=LEFT, bg='#ece0f4')
+
+    for i in range(4) :
+
+        pic = PhotoImage(file = f"Project/{data[i][5]}").subsample(4, 4)
+        label = Label(meatframe, image = pic, compound = LEFT, bg = '#ece0f4')
         label.image = pic  # Keep a reference to the image to prevent it from being garbage collected
-        label.grid(row=0, column=i, sticky='news')
+        label.grid(row = 0, column = i, sticky = 'news')
         # pic = PhotoImage(file = f"Project/{data[i][5]}").subsample(4, 4)
         # print(f"Project/{data[i][5]}")
         # Label(meatframe, image = pic, compound = LEFT, bg = '#ece0f4').grid(row = 0, column = i, sticky = 'news')
         Label(meatframe, text = f'{data[i][1]}\n {data[i][4]} THB : 1 KG\nQuantity : 25', font = 'Garamond 12 bold', fg = '#3b204b', bg = '#ece0f4').grid(row = 1, column = i, padx = 50, sticky = 'nws')
         porksh = Spinbox(meatframe, from_ = 0, to = 25, width = 8)
-        porksh.grid(row = 2, column = i, padx = 50 , sticky = 'news')
+        porksh.grid(row = 2, column = i, padx = 50, sticky = 'news')
         porksh.configure(justify = CENTER, state = 'readonly')
 
     # Label(meatframe, image = images_porkleg, compound = LEFT,bg = '#ece0f4').grid(row = 0, column = 1, sticky = 'news')
@@ -514,10 +516,10 @@ def meat(frame):
 ### Processed Food Goods ###
 ###########################
 
-def processed(frame):
+def processed(frame) :
 
     processedframe = Frame(frame, bg = '#ece0f4')
-    processedframe.rowconfigure((0,1,2), weight = 1)
+    processedframe.rowconfigure((0, 1, 2), weight = 1)
     processedframe.rowconfigure((0, 1, 2, 3, 4, 5), weight = 1)
     processedframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
 
@@ -533,14 +535,14 @@ def processed(frame):
 ### Veggie Goods ###
 ###################
 
-def vegetable(frame):
+def vegetable(frame) :
 
     vegetableframe = Frame(frame, bg = '#ece0f4')
-    vegetableframe.rowconfigure((0,1,2), weight = 1)
+    vegetableframe.rowconfigure((0, 1, 2), weight = 1)
     vegetableframe.rowconfigure((0, 1, 2, 3, 4, 5), weight = 1)
     vegetableframe.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1)
 
-    backkBtn = Button(vegetableframe, text = "Back", bg = '#8150a0', fg = '#e4fbff',width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
+    backkBtn = Button(vegetableframe, text = "Back", bg = '#8150a0', fg = '#e4fbff', width = 1, height = 1 , borderwidth = 0, command = lambda:welcomepage().grid(column = 0, row = 0, columnspan = 6, rowspan = 7, sticky = 'news'))
     backkBtn.grid(row = 4, column = 0, padx = 10 , sticky = 'news') 
     backkBtn.bind("<Enter>", lambda event: backkBtn.config(bg = '#612388'))
     backkBtn.bind("<Leave>", lambda event: backkBtn.config(bg = '#8150a0'))
@@ -551,7 +553,7 @@ def vegetable(frame):
 ### Fruit Goods ###
 ##################
 
-def fruit(frame):
+def fruit(frame) :
 
     fruitframe = Frame(frame, bg = '#ece0f4')
     fruitframe.rowconfigure((0,1,2), weight = 1)
@@ -569,7 +571,7 @@ def fruit(frame):
 ### Snack&Sweet Goods ###
 ########################
 
-def snack(frame):
+def snack(frame) :
 
     snackframe = Frame(frame, bg = '#ece0f4')
     snackframe.rowconfigure((0,1,2), weight = 1)
@@ -587,7 +589,7 @@ def snack(frame):
 ### Beverage Goods ###
 #####################
 
-def beverage(frame):
+def beverage(frame) :
 
     beverageframe = Frame(frame, bg = '#ece0f4')
     beverageframe.rowconfigure((0,1,2), weight = 1)
@@ -606,7 +608,7 @@ def beverage(frame):
 #################
 
 createconnection()
-def fetchmenu(type):
+def fetchmenu(type) :
     sql = 'SELECT * FROM goods WHERE type = ?'
     cursor.execute(sql, [type])   
     result = cursor.fetchall()
